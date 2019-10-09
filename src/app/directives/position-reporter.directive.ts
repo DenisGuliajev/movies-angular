@@ -34,7 +34,7 @@ export class PositionReporterDirective implements OnInit, OnDestroy {
   private wrapper: HTMLElement;
 
   ngOnDestroy(): void {
-    PositionReporterDirective.events.forEach(evName => this.subscription.unsubscribe());
+    this.subscription.unsubscribe();
   }
 
   ngOnInit(): void {
