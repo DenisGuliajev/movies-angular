@@ -47,7 +47,6 @@ export class PositionReporterDirective implements OnInit, OnDestroy {
   recalculate = (e: Event): void => {
     // @ts-ignore
     this.domRect = this.wrapper.getBoundingClientRect();
-    // first node comment
     switch (true) {
       case !this.wrapper.hasChildNodes() || this.wrapper.childNodes.length === 0:
         this.loadMore.emit(true);
@@ -56,9 +55,6 @@ export class PositionReporterDirective implements OnInit, OnDestroy {
         const lastNode: HTMLElement = this.wrapper.childNodes[this.wrapper.childNodes.length - 1] as HTMLElement;
         const lastNodeRect = lastNode.getBoundingClientRect();
         const lastNodeHeight = lastNodeRect.bottom - lastNodeRect.top;
-        const lastNodeWidth = lastNodeRect.right - lastNodeRect.left;
-        const intFrameHeight = window.innerHeight;
-        const portH = window.innerHeight + this.domRect.height;
         if ((window.scrollY + window.innerHeight) >
           lastNodeRect.top + (window.pageYOffset || document.documentElement.scrollTop) - lastNodeHeight) {
           console.log('more');
