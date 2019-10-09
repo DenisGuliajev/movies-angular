@@ -1,0 +1,17 @@
+.mat-accordion .mat-expansion-panel {
+  border-radius: 0;
+}
+.search-container > * {
+  width: 100%;
+  display: block;
+}
+.navigation-bar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+.mat-toolbar .mat-toolbar-row {
+  height: 93px;
+}
