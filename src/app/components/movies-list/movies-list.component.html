@@ -1,17 +1,17 @@
 <div class="row no-gutters" appPositionReporter (loadMore)="loadMoreMovies()">
-  <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let movie of movies">
-    <mat-card class="movie-card">
+  <div *ngFor="let movie of movies">
+    <mat-card class="mat-card movie-card">
       <mat-card-header>
         <mat-card-title>{{movie.Title}}</mat-card-title>
       </mat-card-header>
-      <img mat-card-image [src]="movie.Poster" alt="Poster of {{movie.Title}}">
-      <mat-card-content>
+      <img  [src]="movie.Poster" alt="Poster of {{movie.Title}}">
+      <mat-card-content class="tile-content">
         <mat-list>
           <mat-list-item role="listitem">Type:  {{movie.Type}}</mat-list-item>
           <mat-list-item role="listitem">Year:  {{movie.Year}} </mat-list-item>
         </mat-list>
       </mat-card-content>
-      <mat-card-actions>
+      <mat-card-actions >
         <button  mat-raised-button color="accent" [routerLink]="['/movie-details', movie.imdbID]">View details in new window</button>
       </mat-card-actions>
     </mat-card>

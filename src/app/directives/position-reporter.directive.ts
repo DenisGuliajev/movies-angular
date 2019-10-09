@@ -1,6 +1,6 @@
 import {Directive, ElementRef, OnDestroy, OnInit, HostListener, EventEmitter, Output} from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { throttleTime } from 'rxjs/operators';
 
 @Directive({
   selector: '[appPositionReporter]',
@@ -40,7 +40,7 @@ export class PositionReporterDirective implements OnInit, OnDestroy {
   ngOnInit(): void {
     PositionReporterDirective.events.forEach(evName =>
       this.subscription.add(fromEvent(window, evName)
-        .pipe(debounceTime(1000)).subscribe((e) => this.recalculate(e))));
+        .pipe(throttleTime(1000)).subscribe((e) => this.recalculate(e))));
   }
 
   // if we have more than 2 cols height left from the bottom - fire loadMore emitter
