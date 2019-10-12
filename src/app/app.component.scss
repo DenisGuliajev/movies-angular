@@ -19,12 +19,12 @@
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: auto 1fr;
-  padding: 15px;
   a {
     justify-self: start;
     align-self: center;
   }
   .search-group {
+    padding: 15px;
     justify-self: end;
     align-self: center;
   }
