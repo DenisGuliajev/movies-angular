@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable, BehaviorSubject, of} from 'rxjs';
-import {mergeMap, mapTo} from 'rxjs/operators';
+import {BehaviorSubject, Observable, of, Subscription} from 'rxjs';
+import {mergeMap} from 'rxjs/operators';
 import {MovieShort} from 'src/app/classes/movies/movie.short';
 import {SearchResponseShort} from 'src/app/classes/serch/search-response-short';
 import {Movie} from 'src/app/classes/movies/movie';
-import { SearchRequestBySearchInterface } from 'src/app/classes/serch/search-request-by-search.interface';
+import {SearchRequestBySearchInterface} from 'src/app/classes/serch/search-request-by-search.interface';
+import { SearchService } from './search.service';
 
 
 let cnt = 0;
@@ -29,32 +30,27 @@ export class MovieService {
 
   private static apiUrl = 'http://www.omdbapi.com/';
   private static posterUrl = 'http://img.omdbapi.com/';
-  private static searchParams: SearchRequestBySearchInterface = {
-    s: 'green',
-    type: 'movie',
-    y: '2010',
-    r: 'json',
-    page: 0,
-    v: 1
-  };
+  private searchParams: SearchRequestBySearchInterface;
   // tslint:disable-next-line:variable-name
   private _moviesList: BehaviorSubject<Array<MovieShort>>;
-  getCnt = () => cnt;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private searchService: SearchService
   ) {
     cnt++;
     console.log('cnt ', cnt);
+    this.searchParams = this.searchService.searchParams;
     this._moviesList = new BehaviorSubject<Array<MovieShort>>([]);
   }
+
   // increment page by 1 and return SearchResponse
   nextPage
-  : () => Observable<SearchResponseShort>
-  = () => {
-    MovieService.searchParams.page += 1;
+    : () => Observable<SearchResponseShort>
+    = () => {
+    this.searchParams.page += 1;
     let newParams = new HttpParams();
-    for (const [key, value] of Object.entries(MovieService.searchParams)) {
+    for (const [key, value] of Object.entries(this.searchParams)) {
       newParams = newParams.set(key, value);
     }
     return this.http.get<SearchResponseShort>(MovieService.apiUrl, {
@@ -69,28 +65,22 @@ export class MovieService {
   init
     : () => Observable<SearchResponseShort>
     = () => {
-    MovieService.searchParams.page += 1;
+    this.searchParams.page += 1;
     let newParams = new HttpParams();
-    for (const [key, value] of Object.entries(MovieService.searchParams)) {
+    for (const [key, value] of Object.entries(this.searchParams)) {
       newParams = newParams.set(key, value);
     }
     return this.http.get<SearchResponseShort>(MovieService.apiUrl, {
       params: newParams
     });
   }
-  // reset static searchParams and pipe from next page
-  searchMore
-    : (searchParameters: SearchRequestBySearchInterface) => Observable<boolean>
-    = (searchParameters) => {
-    for (const [key, value] of Object.entries(searchParameters)) {
-      MovieService.searchParams[key] = value;
-    }
-    return this.nextPage().pipe(
-      mapTo(true)
-    );
+
+  scrollDown
+    : () => void
+    = () => {
+    const tmpSubscription = new Subscription();
+    tmpSubscription.add(this.nextPage().subscribe(() => tmpSubscription.unsubscribe()));
   }
-
-
   getById
     : (id: string) => Observable<Movie>
     = (id) => this.http.get<Movie>(MovieService.apiUrl, {params: new HttpParams().set('i', id).set('plot', 'full')})

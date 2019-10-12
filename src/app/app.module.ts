@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MovieService } from './services/movie/movie.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
@@ -25,10 +25,14 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { AuthService } from './services/auth/auth.service';
 import { httpInterceptorProviders } from './http-interceptors';
+import { AdvancedSearchComponent } from './components/advanced-search/advanced-search.component';
+import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AdvancedSearchComponent,
+    EnumToArrayPipe,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,7 @@ import { httpInterceptorProviders } from './http-interceptors';
     MatRadioModule,
     MatCheckboxModule,
     MatExpansionModule,
+    FormsModule,
   ],
   providers: [
     AuthService,

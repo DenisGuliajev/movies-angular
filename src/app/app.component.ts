@@ -18,7 +18,7 @@ export class AppComponent {
     }
   title = 'movies';
   options: FormGroup;
-  panelOpenState = false;
+  panelOpenState = true;
   changePanelOpenState() {
     this.panelOpenState = !this.panelOpenState;
   }

@@ -7,7 +7,7 @@ import { MoviePosterDirective } from './movie-poster.directive';
 @NgModule({
   declarations: [
     PositionReporterDirective,
-    MoviePosterDirective
+    MoviePosterDirective,
   ],
   exports: [
     PositionReporterDirective

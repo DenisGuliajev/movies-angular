@@ -31,8 +31,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
   loadMoreMovies = () => {
-    this.subscription.add(this.moviesService.nextPage().pipe(mapTo(true)).subscribe(gotIt => console.log('resolved')));
-
+    this.moviesService.scrollDown();
   }
 
 }

@@ -1,5 +1,6 @@
 import {Rating} from '../rating';
 import { MovieShort } from './movie.short';
+import { MovieTypes } from '../movie-types';
 
 export class Movie extends MovieShort {
     Rated: string;
@@ -17,7 +18,7 @@ export class Movie extends MovieShort {
     Metascore: string;
     imdbRating: string;
     imdbVotes: string;
-    Type: string;
+    Type: MovieTypes;
     DVD: string;
     BoxOffice: string;
     Production: string;

@@ -1,6 +1,8 @@
+import { MovieTypes } from '../movie-types';
+
 export interface SearchRequestBySearchInterface {
   s: string;
-  type?: 'movie'|'series'|'episode';
+  type?: MovieTypes;
   y?: string;
   r: 'json';
   page?: number;
