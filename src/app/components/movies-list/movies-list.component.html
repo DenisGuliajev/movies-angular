@@ -2,7 +2,7 @@
   <div *ngFor="let movie of movies">
     <mat-card class="mat-card movie-card">
       <mat-card-header>
-        <mat-card-title>{{movie.Title}}</mat-card-title>
+        <mat-card-title><h1>{{movie.Title}}</h1></mat-card-title>
       </mat-card-header>
       <img  [src]="movie.Poster" alt="Poster of {{movie.Title}}">
       <mat-card-content class="tile-content">
@@ -12,7 +12,7 @@
         </mat-list>
       </mat-card-content>
       <mat-card-actions >
-        <button  mat-raised-button color="accent" [routerLink]="['/movie-details', movie.imdbID]">View details in new window</button>
+        <button class=""  mat-raised-button color="accent" [routerLink]="['/movie-details', movie.imdbID]">View details in new window</button>
       </mat-card-actions>
     </mat-card>
   </div>

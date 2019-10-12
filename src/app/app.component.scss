@@ -1,17 +1,31 @@
-.mat-accordion .mat-expansion-panel {
-  border-radius: 0;
-}
-.search-container > * {
-  width: 100%;
-  display: block;
-}
-.navigation-bar {
+.nav-row {
+  background-color: slategray;
+  grid-area: nav-row;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   left: 0;
   z-index: 1000;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto;
 }
-.mat-toolbar .mat-toolbar-row {
-  height: 93px;
+
+.main-body-row {
+  grid-area: main-body-row;
+  align-self: stretch;
+}
+.navigation-bar {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto 1fr;
+  padding: 15px;
+  a {
+    justify-self: start;
+    align-self: center;
+  }
+  .search-group {
+    justify-self: end;
+    align-self: center;
+  }
 }

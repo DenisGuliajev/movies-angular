@@ -11,7 +11,6 @@ import { mapTo } from 'rxjs/operators';
   styleUrls: ['./movies-list.component.sass'],
 })
 export class MoviesListComponent implements OnInit, OnDestroy {
-  @HostBinding('class.container') row1 = true;
   title = 'movies';
   movies: MovieShort[];
   subscription: Subscription;

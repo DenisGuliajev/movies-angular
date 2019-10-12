@@ -2,10 +2,14 @@
   display: grid
   grid-template-rows: min-content auto max-content max-content
   border-radius: 0
+  padding: 0
   .mat-card-actions
     .mat-raised-button
       width: 100%
+      font-size: large
       border-radius: 0
+      padding-top: 15px
+      padding-bottom: 15px
 .row > div
   justify-content: stretch
   align-content: stretch
@@ -13,50 +17,28 @@
   border-radius: 0
 
 .mat-card-header .mat-card-title
-  font-size: 26px
   text-overflow: ellipsis
   overflow: hidden
-  //white-space: nowrap
+  white-space: nowrap
 
 img
   width: 100%
   height: auto
 
-.row
-  display: grid
-  grid-template-columns: repeat(4, 1fr)
-  grid-template-rows: repeat(auto-fit, 1fr)
 
 .mat-card-header
   grid-template-columns: 1fr
   display: grid
   justify-items: center
 
-// Extra small devices (portrait phones, less than 576px)
-// No media query for `xs` since this is the default in Bootstrap
+.mat-card-actions
+  margin: 0
+  padding: 0
+.mat-raised-button
+  padding: 0
 
-// Small devices (landscape phones, 576px and up)
-//@media (min-width: 576px) { ... }
+.tile-content
+  margin-bottom: 0
 
-// Medium devices (tablets, 768px and up)
-//@media (min-width: 768px) { ... }
-
-// Large devices (desktops, 992px and up)
-// @media (min-width: 992px)
-//   .row
-//     grid-template-columns: repeat(4, 1fr)
-//     grid-template-rows: repeat(2, 1fr)
-//
-// // Extra large devices (large desktops, 1200px and up)
-// @media (min-width: 1200px)
-//   .row
-//     grid-template-columns: repeat(4, 1fr)
-//     grid-template-rows: repeat( auto-fill,  1fr)
-//
-
-
-
-
-
-
-
+.mat-card>.mat-card-actions:last-child
+  margin-bottom: 0
