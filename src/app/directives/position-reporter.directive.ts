@@ -32,12 +32,19 @@ export class PositionReporterDirective implements OnInit, OnDestroy {
   @Output() loadMore: EventEmitter<boolean>;
   private _domRect: DOMRect;
   private wrapper: HTMLElement;
+  private lastImDbId = '';
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
   ngOnInit(): void {
+    /*this.subscription.add(fromEvent(window, 'scroll touchmove resize')
+      .pipe(throttleTime(1000)).subscribe((e) => this.recalculate(e)));*/
+    /*const evnts: Event[] = [];
+    PositionReporterDirective.events.forEach(evName =>
+      this.subscription.add(fromEvent(window, evName)
+        .pipe(throttleTime(1000)).subscribe((e) => this.recalculate(e))));*/
     PositionReporterDirective.events.forEach(evName =>
       this.subscription.add(fromEvent(window, evName)
         .pipe(throttleTime(1000)).subscribe((e) => this.recalculate(e))));
@@ -49,23 +56,28 @@ export class PositionReporterDirective implements OnInit, OnDestroy {
       case !this.wrapper.hasChildNodes() || this.wrapper.childNodes.length === 0:
         this.loadMore.emit(true);
         break;
-      case ((this.wrapper.hasChildNodes() &&
-      this.wrapper.childNodes.length > 0) &&
-        (this.wrapper.childNodes[1].hasChildNodes() &&
-        this.wrapper.childNodes[1].childNodes.length > 0)):
-        // @ts-ignore
-        this.domRect = this.wrapper.childNodes[1].getBoundingClientRect();
+      case (
+        this.wrapper.hasChildNodes() &&
+        this.wrapper.childNodes.length > 1
+      ):
         const lastNode: HTMLElement =
-          this.wrapper.childNodes[1].childNodes[0].childNodes[
-          this.wrapper.childNodes[1].childNodes[0].childNodes.length - 1
+          this.wrapper.childNodes[
+          this.wrapper.childNodes.length - 1
             ] as HTMLElement;
+        // if (lastNode.attributes.getNamedItem('imdb-id').value !== this.lastImDbId) {
+        //   break;
+        // }
+        // this.lastImDbId = lastNode.attributes.getNamedItem('imdb-id').value;
+        // @ts-ignore
+        this.domRect = this.wrapper.getBoundingClientRect();
         const lastNodeRect = lastNode.getBoundingClientRect();
         const lastNodeHeight = lastNodeRect.bottom - lastNodeRect.top;
         if ((window.scrollY + window.innerHeight) >
           lastNodeRect.top + (window.pageYOffset || document.documentElement.scrollTop) - lastNodeHeight) {
           console.log('more');
+          this.lastImDbId = lastNode.dataset.imdbId;
           this.loadMore.emit(true);
-        }this.wrapper.childNodes[1].childNodes
+        }
         break;
       default:
         break;

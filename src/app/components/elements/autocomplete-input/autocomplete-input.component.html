@@ -1,6 +1,6 @@
 <form
   [formGroup]="autoCompleteForm"
-  (ngSubmit)="formSubmission()">
+  (ngSubmit)="formSubmission($event)">
   <mat-form-field>
     <input
       type="text"
@@ -8,15 +8,16 @@
       placeholder="searchValue"
       aria-label="Search"
       matInput
-      [formControl]="searchControl"
+      formControl="searchControl"
       [matAutocomplete]="auto">
     <mat-autocomplete
         #auto="matAutocomplete"
-        (optionSelected)="updateSearchQueryName(newValue)">
+        (optionSelected)="updateSearchQueryName($event)">
       <mat-option
         *ngFor="let option of searchOptions | async"
-        [value]="option">
-        {{option}}
+        [value]="option"
+        [routerLink]="['/movie-details', option.imdbID]">
+        {{option.Title}}
       </mat-option>
     </mat-autocomplete>
     <mat-icon matSuffix>search</mat-icon>

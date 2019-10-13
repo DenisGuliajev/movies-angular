@@ -17,11 +17,11 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private moviesService: MovieService,
+    private movieService: MovieService,
   ) {
     this.subscription = new Subscription();
     // request
-    this.subscription.add(this.moviesService.moviesList.subscribe(movies => this.movies = movies));
+    this.subscription.add(this.movieService.moviesList.subscribe(movies => this.movies = movies));
   }
 
   ngOnInit(): void {
@@ -30,4 +30,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   ngOnDestroy
     : () => void
     = () => this.subscription.unsubscribe()
+  loadMoreMovies
+    : () => void
+    = () => this.movieService.scrollDown()
 }

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import { MovieService } from './services/movie/movie.service';
 import { SearchRequestBySearchInterface } from './classes/serch/search-request-by-search.interface';
@@ -10,20 +10,20 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy{
 
-  searchParameters: Observable<SearchRequestBySearchInterface>;
+  searchParameters: SearchRequestBySearchInterface;
   subscription: Subscription;
   constructor(
     fb: FormBuilder,
     private movieService: MovieService,
   ) {
     this.subscription = new Subscription();
+    this.subscription.add(this.movieService.searchParams.subscribe((nv) => this.searchParameters = nv))
     this.options = fb.group({
       hideRequired: false,
       floatLabel: 'auto',
     });
-    this.searchParameters = this.movieService.searchParams;
   }
 
   title = 'movies';
@@ -39,7 +39,7 @@ export class AppComponent {
       .add(this.movieService.newSearchByQuery$(newQuery)
         .subscribe(() => console.log('Updated from newSearchByQuery$')));
   }
-  searchAnotherName(newName) {
+  searchAnotherId(newName) {
     console.log('searchAnotherName(newName): ', newName);
     this.subscription
       .add(this.movieService.newSearchByTitle$({s: newName})
@@ -48,7 +48,10 @@ export class AppComponent {
   resetParameters() {
     this.movieService.resetParams();
   }
-  loadMoreMovies
-    : () => void
-    = () => this.movieService.scrollDown()
+
+  ngOnDestroy(): void {
+  }
+
+  ngOnInit(): void {
+  }
 }

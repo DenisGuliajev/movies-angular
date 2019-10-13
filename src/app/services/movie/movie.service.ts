@@ -147,23 +147,33 @@ export class MovieService {
   }
   newSearchByQuery$
     : (req: SearchRequestBySearchInterface) => Observable<Array<MovieShort>>
-    = (req) => this.http.get<SearchResponseShort>(MovieService.apiUrl, {
-    params: this.getHttpParams(req)
-  }).pipe(
-    mergeMap((res: SearchResponseShort) => {
-      this._searchParams.next(req);
-      this._moviesList.next(res.Search);
-      return of(res.Search);
-    }),
-    catchError((err) => of([]))
-  )
+    = (req) => {
+    const tmp = MovieService.defaultSearch();
+    for (const [key, value] of Object.entries(tmp)) {
+      // strip empty values
+      if (req.hasOwnProperty(key) && req[key] !== '') {
+        tmp[key] = req[key];
+      }
+    }
+    tmp.page = 1;
+    return this.http.get<SearchResponseShort>(MovieService.apiUrl, {
+      params: this.getHttpParams(tmp)
+    }).pipe(
+      mergeMap((res: SearchResponseShort) => {
+        this._searchParams.next(tmp);
+        this._moviesList.next(res.Search);
+        return of(res.Search);
+      }),
+      catchError((err) => of([]))
+    );
+  }
 
   preSearchByTitle
-    : (req: SearchRequestBySearchInterface) => Observable<string[]>
+    : (req: SearchRequestBySearchInterface) => Observable<MovieShort[]>
     = (req) => this.http.get<SearchResponseShort>(MovieService.apiUrl, {
     params: this.getHttpParams(req)
   }).pipe(
-    map((res: SearchResponseShort) => res.Search.map((m) => m.Title)),
+    mergeMap((resp) => of(resp.Search)),
     catchError((err) => of([]))
   )
 

@@ -1,0 +1,15 @@
+<mat-card class="mat-card _movie-card">
+  <mat-card-header>
+    <mat-card-title><h1>{{_movie.Title}}</h1></mat-card-title>
+  </mat-card-header>
+  <img  [src]="_movie.Poster" alt="Poster of {{_movie.Title}}">
+  <mat-card-content class="tile-content">
+    <mat-list>
+      <mat-list-item role="listitem">Type:  {{_movie.Type}}</mat-list-item>
+      <mat-list-item role="listitem">Year:  {{_movie.Year}} </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions >
+    <button class=""  mat-raised-button color="accent" [routerLink]="['/movie-details', _movie.imdbID]">View details in new window</button>
+  </mat-card-actions>
+</mat-card>

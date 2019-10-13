@@ -5,8 +5,7 @@
     <div class="search-group">
       <button mat-button (click)="changePanelOpenState()">Advanced search</button>
       <app-autocomplete-input
-        [searchString]="searchParameters | async"
-        (selectedOther)="searchAnotherName($event)"></app-autocomplete-input>
+        (selectedOther)="searchAnotherId($event)"></app-autocomplete-input>
     </div>
 
   </div>
@@ -15,12 +14,11 @@
       <app-advanced-search
         class="advanced-search"
         (search)="searchAnotherQuery($event)"
-        (reset)="resetParameters()"
-        [searchQuery]="searchParameters | async" ></app-advanced-search>
+        (reset)="resetParameters()"></app-advanced-search>
     </mat-expansion-panel>
   </mat-accordion>
 </div>
-<div class="main-body-row" appPositionReporter (loadMore)="loadMoreMovies()">
+<div class="main-body-row">
   <router-outlet></router-outlet>
 </div>
 
