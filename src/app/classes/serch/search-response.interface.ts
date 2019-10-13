@@ -1,7 +1,7 @@
 import { MovieShort } from '../movies/movie.short';
 
 export interface SearchResponseInterface {
-  Response: boolean;
+  Response: 'True'|'False';
   totalResults: number;
   Search: Array<MovieShort>;
 }

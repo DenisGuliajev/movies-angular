@@ -4,21 +4,23 @@
        routerLink="/">Movies App</a>
     <div class="search-group">
       <button mat-button (click)="changePanelOpenState()">Advanced search</button>
-      <mat-form-field>
-        <mat-label><small>Search by title</small></mat-label>
-        <input matInput placeholder="Title">
-        <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field>
+      <app-autocomplete-input
+        [searchString]="searchParameters | async"
+        (selectedOther)="searchAnotherName($event)"></app-autocomplete-input>
     </div>
 
   </div>
   <mat-accordion>
     <mat-expansion-panel [expanded]="panelOpenState">
-      <app-advanced-search class="advanced-search"></app-advanced-search>
+      <app-advanced-search
+        class="advanced-search"
+        (search)="searchAnotherQuery($event)"
+        (reset)="resetParameters()"
+        [searchQuery]="searchParameters | async" ></app-advanced-search>
     </mat-expansion-panel>
   </mat-accordion>
 </div>
-<div class="main-body-row">
+<div class="main-body-row" appPositionReporter (loadMore)="loadMoreMovies()">
   <router-outlet></router-outlet>
 </div>
 

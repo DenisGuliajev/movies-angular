@@ -11,8 +11,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MovieDetailResolverService } from './services/movie/movie-detail-resolver.service';
-import { MoviesListModule } from './components/movies-list/movies-list.module';
-import { MovieDetailsModule } from './components/movie-details/movie-details.module';
+import { MoviesListModule } from './components/pages/movies-list/movies-list.module';
+import { MovieDetailsModule } from './components/pages/movie-details/movie-details.module';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
@@ -25,14 +25,18 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { AuthService } from './services/auth/auth.service';
 import { httpInterceptorProviders } from './http-interceptors';
-import { AdvancedSearchComponent } from './components/advanced-search/advanced-search.component';
+import { AdvancedSearchComponent } from './components/elements/advanced-search/advanced-search.component';
 import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { AutocompleteInputComponent } from './components/elements/autocomplete-input/autocomplete-input.component';
+import {CustomDirectivesModule} from './directives/custom-directives.module';
 
 @NgModule({
   declarations: [
+    EnumToArrayPipe,
     AppComponent,
     AdvancedSearchComponent,
-    EnumToArrayPipe,
+    AutocompleteInputComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +60,8 @@ import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
     MatCheckboxModule,
     MatExpansionModule,
     FormsModule,
+    MatAutocompleteModule,
+    CustomDirectivesModule,
   ],
   providers: [
     AuthService,

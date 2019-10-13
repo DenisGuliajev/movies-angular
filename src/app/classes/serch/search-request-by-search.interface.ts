@@ -4,7 +4,7 @@ export interface SearchRequestBySearchInterface {
   s: string;
   type?: MovieTypes;
   y?: string;
-  r: 'json';
+  r?: 'json'|'';
   page?: number;
   callback?: string;
   v?: 1;

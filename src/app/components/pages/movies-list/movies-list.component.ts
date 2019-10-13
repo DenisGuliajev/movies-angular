@@ -27,11 +27,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-  loadMoreMovies = () => {
-    this.moviesService.scrollDown();
-  }
-
+  ngOnDestroy
+    : () => void
+    = () => this.subscription.unsubscribe()
 }

@@ -45,29 +45,30 @@ export class PositionReporterDirective implements OnInit, OnDestroy {
 
   // if we have more than 2 cols height left from the bottom - fire loadMore emitter
   recalculate = (e: Event): void => {
-    // @ts-ignore
-    this.domRect = this.wrapper.getBoundingClientRect();
     switch (true) {
       case !this.wrapper.hasChildNodes() || this.wrapper.childNodes.length === 0:
         this.loadMore.emit(true);
         break;
-      case this.wrapper.hasChildNodes() && this.wrapper.childNodes.length > 1:
-        const lastNode: HTMLElement = this.wrapper.childNodes[this.wrapper.childNodes.length - 1] as HTMLElement;
+      case ((this.wrapper.hasChildNodes() &&
+      this.wrapper.childNodes.length > 0) &&
+        (this.wrapper.childNodes[1].hasChildNodes() &&
+        this.wrapper.childNodes[1].childNodes.length > 0)):
+        // @ts-ignore
+        this.domRect = this.wrapper.childNodes[1].getBoundingClientRect();
+        const lastNode: HTMLElement =
+          this.wrapper.childNodes[1].childNodes[0].childNodes[
+          this.wrapper.childNodes[1].childNodes[0].childNodes.length - 1
+            ] as HTMLElement;
         const lastNodeRect = lastNode.getBoundingClientRect();
         const lastNodeHeight = lastNodeRect.bottom - lastNodeRect.top;
         if ((window.scrollY + window.innerHeight) >
           lastNodeRect.top + (window.pageYOffset || document.documentElement.scrollTop) - lastNodeHeight) {
           console.log('more');
           this.loadMore.emit(true);
-        }
+        }this.wrapper.childNodes[1].childNodes
         break;
       default:
         break;
     }
   }
-
-  triggerPool = () => {
-
-  }
-
 }

@@ -9,8 +9,8 @@ const routes: Routes = [
     redirectTo: '/movies-list',
     pathMatch: 'full'
   },
-  { path: 'movie-details', loadChildren: () => import('./components/movie-details/movie-details.module').then(m => m.MovieDetailsModule) },
-  { path: 'movies-list', loadChildren: () => import('./components/movies-list/movies-list.module').then(m => m.MoviesListModule) },
+  { path: 'movie-details', loadChildren: () => import('./components/pages/movie-details/movie-details.module').then(m => m.MovieDetailsModule) },
+  { path: 'movies-list', loadChildren: () => import('./components/pages/movies-list/movies-list.module').then(m => m.MoviesListModule) },
 ];
 
 @NgModule({
