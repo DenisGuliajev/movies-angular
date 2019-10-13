@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostBinding } from '@angular/core';
 import { SearchRequestBySearchInterface } from 'src/app/classes/serch/search-request-by-search.interface';
 import { MovieTypes } from 'src/app/classes/movie-types';
 import { MovieService } from 'src/app/services/movie/movie.service';
@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 export class AdvancedSearchComponent {
   @Output() search: EventEmitter<SearchRequestBySearchInterface>;
   @Output() reset: EventEmitter<boolean>;
+  @HostBinding('class.highlighted') public highlighted: boolean = true;
   movieTypes: typeof MovieTypes;
   years: string[];
   subscription: Subscription;

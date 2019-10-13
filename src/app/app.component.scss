@@ -30,7 +30,22 @@
 }
 .advanced-search {
   display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-column-gap: 15px;
+  grid-template-columns: 1fr;
+  padding-top: 15px;
+}
+//// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .advanced-search {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.search-group {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  padding: 15px;
 }

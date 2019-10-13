@@ -1,5 +1,15 @@
-
+.advanced-search {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
 .advanced-search-container {
   display: grid;
   grid-template-rows: 1fr;
+}
+//// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .advanced-search {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+  }
 }

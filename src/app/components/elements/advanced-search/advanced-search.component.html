@@ -31,7 +31,9 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+    <mat-button-toggle-group>
+      <mat-button-toggle (click)="resetSearch()">Reset</mat-button-toggle>
+      <mat-button-toggle (click)="searchResults()">Search</mat-button-toggle>
 
-    <mat-button-toggle (click)="resetSearch()">Reset</mat-button-toggle>
-    <mat-button-toggle (click)="searchResults()">Search</mat-button-toggle>
+    </mat-button-toggle-group>
 </div>

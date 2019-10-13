@@ -19,7 +19,7 @@ export class AppComponent implements OnInit, OnDestroy{
     private movieService: MovieService,
   ) {
     this.subscription = new Subscription();
-    this.subscription.add(this.movieService.searchParams.subscribe((nv) => this.searchParameters = nv))
+    this.subscription.add(this.movieService.searchParams.subscribe((nv) => this.searchParameters = nv));
     this.options = fb.group({
       hideRequired: false,
       floatLabel: 'auto',
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
   title = 'movies';
   options: FormGroup;
-  panelOpenState = true;
+  panelOpenState = false;
 
   changePanelOpenState() {
     this.panelOpenState = !this.panelOpenState;
