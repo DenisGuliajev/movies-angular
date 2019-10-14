@@ -1,18 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MovieService } from './services/movie/movie.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MovieDetailResolverService } from './services/movie/movie-detail-resolver.service';
-import { MoviesListModule } from './components/movies-list/movies-list.module';
-import { MovieDetailsModule } from './components/movie-details/movie-details.module';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
@@ -23,12 +17,28 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 import { AuthService } from './services/auth/auth.service';
 import { httpInterceptorProviders } from './http-interceptors';
+import { AdvancedSearchComponent } from './components/elements/advanced-search/advanced-search.component';
+import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AutocompleteInputComponent } from './components/elements/autocomplete-input/autocomplete-input.component';
+import {CustomDirectivesModule} from './directives/custom-directives.module';
+import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import { MovieDetailResolverService } from './services/movie/movie-detail-resolver.service';
+import { MoviesListModule } from './components/pages/movies-list/movies-list.module';
+import { MovieDetailsModule } from './components/pages/movie-details/movie-details.module';
 
 @NgModule({
   declarations: [
+    EnumToArrayPipe,
     AppComponent,
+    AdvancedSearchComponent,
+    AutocompleteInputComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +61,11 @@ import { httpInterceptorProviders } from './http-interceptors';
     MatRadioModule,
     MatCheckboxModule,
     MatExpansionModule,
+    FormsModule,
+    MatAutocompleteModule,
+    CustomDirectivesModule,
+    MatCardModule,
+    MatListModule,
   ],
   providers: [
     AuthService,
@@ -59,6 +74,7 @@ import { httpInterceptorProviders } from './http-interceptors';
     MovieDetailResolverService
   ],
   exports: [
+    // MovieGridTileComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,114 @@
+// define 3 theme color
+$primary-palette:(
+  50 : #edffff,
+  100 : #eaf5fd,
+  200 : #ddeefc,
+  300 : #cfe7fb,
+  400 : #c4e2fa,
+  500 : #baddf9,
+  600 : #b3d9f8,
+  700 : #abd4f7,
+  800 : #a3cff6,
+  900 : #89abc6,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #ffffff,
+  A700 : #ffffff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+$secondary-palette: (
+  50 : #fbfffc,
+  100 : #eff8ef,
+  200 : #e4f3e4,
+  300 : #d9eed9,
+  400 : #d0ead1,
+  500 : #c8e6c9,
+  600 : #c2e3c3,
+  700 : #bbdfbc,
+  800 : #b4dbb5,
+  900 : #97b498,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #ffffff,
+  A700 : #ffffff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+$warn-palette: (
+  50 : #fefcf7,
+  100 : #fdf8ea,
+  200 : #fcf4dd,
+  300 : #fbf0cf,
+  400 : #faecc4,
+  500 : #f9e9ba,
+  600 : #f8e6b3,
+  700 : #f7e3ab,
+  800 : #f6dfa3,
+  900 : #f5d994,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #ffffff,
+  A700 : #ffffff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+
+
+
+// mat-palette accepts $palette-name, main, lighter and darker variants
+$my-theme-primary: mat-palette($mat-light-green, 600, 300, 900);
+$my-theme-accent: mat-palette($mat-orange, 700, 300, 900);
+$my-theme-warn: mat-palette($mat-pink, 700, 300, 900);
+// create theme (use mat-dark-theme for themes with dark backgrounds)
+$my-theme: mat-dark-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
+
+// themes for notifications
+$my-theme-info: mat-palette($mat-blue);
+$my-theme-success: mat-palette($mat-green);
+$my-theme-warning: mat-palette($mat-yellow);
+$my-theme-error: mat-palette($mat-red);
+

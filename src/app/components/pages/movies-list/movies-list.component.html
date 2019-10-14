@@ -1,0 +1,6 @@
+<div class="row no-gutters" appPositionReporter (loadMore)="loadMoreMovies()">
+  <app-movie-grid-tile *ngFor="let _movie of movies" [movie]="_movie" [attr.imdb-id]="_movie.imdbID" class="grid-tile">
+
+  </app-movie-grid-tile>
+</div>
+

@@ -1,0 +1,38 @@
+<div class="row">
+
+  <!--<div class="">
+    <mat-card>
+      <mat-card-header>
+        &lt;!&ndash;<div mat-card-avatar class="example-header-image"></div>&ndash;&gt;
+        <mat-card-title>{{movie.Title}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <img mat-card-image [src]="movie.Poster" alt="Poster of {{movie.Title}}">
+      </mat-card-content>
+    </mat-card>
+  </div>-->
+  <div class="description-column">
+    <img mat-card-image [src]="movie.Poster" alt="Poster of {{movie.Title}}">
+    <p><mat-label>Rated: </mat-label>{{movie.Rated}}</p>
+    <p><mat-label>Released: </mat-label>{{movie.Released}}</p>
+    <p><mat-label>Runtime: </mat-label>{{movie.Runtime}}</p>
+    <p><mat-label>Genre: </mat-label>{{movie.Genre}}</p>
+    <p><mat-label>Director: </mat-label>{{movie.Director}}</p>
+    <p><mat-label>Writer: </mat-label>{{movie.Writer}}</p>
+    <p><mat-label>Actors: </mat-label>{{movie.Actors}}</p>
+    <p><mat-label>Plot: </mat-label>{{movie.Plot}}</p>
+    <p><mat-label>Language: </mat-label>{{movie.Language}}</p>
+    <p><mat-label>Country: </mat-label>{{movie.Country}}</p>
+    <p><mat-label>Awards: </mat-label>{{movie.Awards}}</p>
+    <p><mat-label>Ratings: </mat-label>{{movie.Ratings}}</p>
+    <p><mat-label>Metascore: </mat-label>{{movie.Metascore}}</p>
+    <p><mat-label>imdbRating: </mat-label>{{movie.imdbRating}}</p>
+    <p><mat-label>imdbVotes: </mat-label>{{movie.imdbVotes}}</p>
+    <p><mat-label>Type: </mat-label>{{movie.Type}}</p>
+    <p><mat-label>DVD: </mat-label>{{movie.DVD}}</p>
+    <p><mat-label>BoxOffice: </mat-label>{{movie.BoxOffice}}</p>
+    <p><mat-label>Production: </mat-label>{{movie.Production}}</p>
+    <p><mat-label>Website: </mat-label>{{movie.Website}}</p>
+    <p><mat-label>Response: </mat-label>{{movie.Response}}</p>
+  </div>
+</div>

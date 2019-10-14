@@ -1,0 +1,9 @@
+// import custom componenet themes
+// unofficial naming convention to support nice ordering of files in IDE
+// to see theme under the original style file of the componenent
+
+// you only have to add additional componenets here (instead of in every theme class)
+@import "app/app.component.nav.bar.theme";
+@mixin custom-components-theme($theme, $theme-info, $theme-success, $theme-warnig, $theme-error) {
+  @include app-component-nav-bar-theme($theme);
+}

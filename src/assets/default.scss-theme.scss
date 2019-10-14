@@ -1,0 +1,6 @@
+// below is how mat-toolbar's theme is getting applied
+// ref: https://github.com/angular/material2/blob/88601fa51d581f538468a9b63890b0e285e519cb/src/lib/toolbar/_toolbar-theme.scss#L6
+@mixin toolbar-color($palette) {
+  background: mat-color($palette);
+  color: mat-color($palette, default-contrast);
+}

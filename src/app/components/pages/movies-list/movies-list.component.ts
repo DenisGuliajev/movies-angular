@@ -11,29 +11,26 @@ import { mapTo } from 'rxjs/operators';
   styleUrls: ['./movies-list.component.sass'],
 })
 export class MoviesListComponent implements OnInit, OnDestroy {
-  @HostBinding('class.container') row1 = true;
   title = 'movies';
   movies: MovieShort[];
   subscription: Subscription;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private moviesService: MovieService,
+    private movieService: MovieService,
   ) {
     this.subscription = new Subscription();
     // request
-    this.subscription.add(this.moviesService.moviesList.subscribe(movies => this.movies = movies));
+    this.subscription.add(this.movieService.moviesList.subscribe(movies => this.movies = movies));
   }
 
   ngOnInit(): void {
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-  loadMoreMovies = () => {
-    this.subscription.add(this.moviesService.nextPage().pipe(mapTo(true)).subscribe(gotIt => console.log('resolved')));
-
-  }
-
+  ngOnDestroy
+    : () => void
+    = () => this.subscription.unsubscribe()
+  loadMoreMovies
+    : () => void
+    = () => this.movieService.scrollDown()
 }

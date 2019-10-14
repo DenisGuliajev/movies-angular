@@ -1,0 +1,10 @@
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  .description-column {
+    padding: 15px;
+    max-width: 992px;
+    justify-self: center;
+  }
+}

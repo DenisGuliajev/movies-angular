@@ -1,0 +1,39 @@
+<div class="advanced-search-container">
+  <mat-form-field>
+    <input matInput placeholder="Title" [(ngModel)]="searchQuery.s">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Select type</mat-label>
+    <mat-select
+      [(ngModel)]="searchQuery.type">
+      <mat-option
+        *ngFor="let movieType of movieTypes | enumToArray"
+        [value]="movieType.name">
+        {{movieType.index}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>
+
+
+<div class="advanced-search-container">
+
+  <mat-form-field>
+    <mat-label>Select year</mat-label>
+    <mat-select
+      [(ngModel)]="searchQuery.y">
+      <mat-option
+        *ngFor="let year of years"
+        [value]="year">
+        {{year !== '' ? year : 'All'}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+    <mat-button-toggle-group>
+      <mat-button-toggle (click)="resetSearch()">Reset</mat-button-toggle>
+      <mat-button-toggle (click)="searchResults()">Search</mat-button-toggle>
+
+    </mat-button-toggle-group>
+</div>

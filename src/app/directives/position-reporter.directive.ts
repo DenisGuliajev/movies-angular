@@ -1,6 +1,6 @@
-import {Directive, ElementRef, OnDestroy, OnInit, HostListener, EventEmitter, Output} from '@angular/core';
+import {Directive, ElementRef, OnDestroy, OnInit, EventEmitter, Output} from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { throttleTime } from 'rxjs/operators';
 
 @Directive({
   selector: '[appPositionReporter]',
@@ -32,32 +32,49 @@ export class PositionReporterDirective implements OnInit, OnDestroy {
   @Output() loadMore: EventEmitter<boolean>;
   private _domRect: DOMRect;
   private wrapper: HTMLElement;
+  private lastImDbId = '';
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
   ngOnInit(): void {
+    /*this.subscription.add(fromEvent(window, 'scroll touchmove resize')
+      .pipe(throttleTime(1000)).subscribe((e) => this.recalculate(e)));*/
+    /*const evnts: Event[] = [];
     PositionReporterDirective.events.forEach(evName =>
       this.subscription.add(fromEvent(window, evName)
-        .pipe(debounceTime(1000)).subscribe((e) => this.recalculate(e))));
+        .pipe(throttleTime(1000)).subscribe((e) => this.recalculate(e))));*/
+    PositionReporterDirective.events.forEach(evName =>
+      this.subscription.add(fromEvent(window, evName)
+        .pipe(throttleTime(1000)).subscribe((e) => this.recalculate())));
   }
 
   // if we have more than 2 cols height left from the bottom - fire loadMore emitter
-  recalculate = (e: Event): void => {
-    // @ts-ignore
-    this.domRect = this.wrapper.getBoundingClientRect();
+  recalculate = (): void => {
     switch (true) {
       case !this.wrapper.hasChildNodes() || this.wrapper.childNodes.length === 0:
         this.loadMore.emit(true);
         break;
-      case this.wrapper.hasChildNodes() && this.wrapper.childNodes.length > 1:
-        const lastNode: HTMLElement = this.wrapper.childNodes[this.wrapper.childNodes.length - 1] as HTMLElement;
+      case (
+        this.wrapper.hasChildNodes() &&
+        this.wrapper.childNodes.length > 1
+      ):
+        const lastNode: HTMLElement =
+          this.wrapper.childNodes[
+          this.wrapper.childNodes.length - 1
+            ] as HTMLElement;
+        // if (lastNode.attributes.getNamedItem('imdb-id').value !== this.lastImDbId) {
+        //   break;
+        // }
+        // this.lastImDbId = lastNode.attributes.getNamedItem('imdb-id').value;
+        // @ts-ignore
+        this.domRect = this.wrapper.getBoundingClientRect();
         const lastNodeRect = lastNode.getBoundingClientRect();
         const lastNodeHeight = lastNodeRect.bottom - lastNodeRect.top;
         if ((window.scrollY + window.innerHeight) >
           lastNodeRect.top + (window.pageYOffset || document.documentElement.scrollTop) - lastNodeHeight) {
-          console.log('more');
+          this.lastImDbId = lastNode.dataset.imdbId;
           this.loadMore.emit(true);
         }
         break;
@@ -65,9 +82,4 @@ export class PositionReporterDirective implements OnInit, OnDestroy {
         break;
     }
   }
-
-  triggerPool = () => {
-
-  }
-
 }
