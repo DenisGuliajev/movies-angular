@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PositionReporterDirective } from './position-reporter.directive';
 import { MoviePosterDirective } from './movie-poster.directive';
+import { WindowWidthObservableDirective } from './window-width-observable.directive';
 
 
 
@@ -8,9 +9,11 @@ import { MoviePosterDirective } from './movie-poster.directive';
   declarations: [
     PositionReporterDirective,
     MoviePosterDirective,
+    WindowWidthObservableDirective,
   ],
   exports: [
-    PositionReporterDirective
+    PositionReporterDirective,
+    WindowWidthObservableDirective
   ]
 })
 export class CustomDirectivesModule { }

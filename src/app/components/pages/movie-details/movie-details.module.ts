@@ -6,6 +6,7 @@ import { MovieDetailsComponent } from './movie-details.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {MatCardModule} from '@angular/material/card';
     MovieDetailsRoutingModule,
     MatButtonToggleModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule
   ]
 })
 export class MovieDetailsModule { }

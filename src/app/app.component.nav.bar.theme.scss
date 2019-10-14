@@ -18,9 +18,10 @@
     // ref: https://github.com/angular/material2/blob/88601fa51d581f538468a9b63890b0e285e519cb/src/lib/toolbar/_toolbar-theme.scss#L39
     background-color: mat-color($background, app-bar);
 
-    .mat-accordion {
+    .description-column, .mat-accordion {
       .mat-expansion-panel {
         background-color: mat-color($background, app-bar);
+        color: mat-color($foreground, text);
       }
     }
 

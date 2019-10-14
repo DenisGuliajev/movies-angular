@@ -1,4 +1,4 @@
-import {Directive, ElementRef, OnDestroy, OnInit, HostListener, EventEmitter, Output} from '@angular/core';
+import {Directive, ElementRef, OnDestroy, OnInit, EventEmitter, Output} from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
 
@@ -47,11 +47,11 @@ export class PositionReporterDirective implements OnInit, OnDestroy {
         .pipe(throttleTime(1000)).subscribe((e) => this.recalculate(e))));*/
     PositionReporterDirective.events.forEach(evName =>
       this.subscription.add(fromEvent(window, evName)
-        .pipe(throttleTime(1000)).subscribe((e) => this.recalculate(e))));
+        .pipe(throttleTime(1000)).subscribe((e) => this.recalculate())));
   }
 
   // if we have more than 2 cols height left from the bottom - fire loadMore emitter
-  recalculate = (e: Event): void => {
+  recalculate = (): void => {
     switch (true) {
       case !this.wrapper.hasChildNodes() || this.wrapper.childNodes.length === 0:
         this.loadMore.emit(true);
@@ -74,7 +74,6 @@ export class PositionReporterDirective implements OnInit, OnDestroy {
         const lastNodeHeight = lastNodeRect.bottom - lastNodeRect.top;
         if ((window.scrollY + window.innerHeight) >
           lastNodeRect.top + (window.pageYOffset || document.documentElement.scrollTop) - lastNodeHeight) {
-          console.log('more');
           this.lastImDbId = lastNode.dataset.imdbId;
           this.loadMore.emit(true);
         }

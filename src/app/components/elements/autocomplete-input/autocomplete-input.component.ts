@@ -49,10 +49,7 @@ export class AutocompleteInputComponent implements OnInit, OnDestroy {
   }
 
   formSubmission(e: Event) {
-    console.log('formSubmission this.searchControl.value', this.searchControl.value);
-    console.log('formSubmission e  ', e);
     e.preventDefault();
-    // this.movieService.newSearchByQuery$({s: e.})
     this.selectedOther.emit(this.searchControl.value);
   }
 

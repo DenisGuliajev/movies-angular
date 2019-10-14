@@ -19,7 +19,6 @@ export class ApiErrorInterceptor implements HttpInterceptor {
             event.hasOwnProperty('body') &&
             event.body.hasOwnProperty('Response') &&
             event.body.Response === 'False') {
-            console.log('event--->>>', event);
             return throwError(event);
           }
           return of(event);

@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {BehaviorSubject, Observable, of, Subscription, pipe, merge} from 'rxjs';
-import {mergeMap, mapTo, map, catchError, tap} from 'rxjs/operators';
+import {BehaviorSubject, Observable, of, Subscription, from} from 'rxjs';
+import {mergeMap, catchError} from 'rxjs/operators';
 import {MovieShort} from 'src/app/classes/movies/movie.short';
 import {SearchResponseShort} from 'src/app/classes/serch/search-response-short';
 import {Movie} from 'src/app/classes/movies/movie';
 import {SearchRequestBySearchInterface} from 'src/app/classes/serch/search-request-by-search.interface';
 import { MovieTypes } from 'src/app/classes/movie-types';
+import {Router} from '@angular/router';
 
 
 let cnt = 0;
@@ -28,7 +29,6 @@ export class MovieService {
     return this._searchParams.asObservable();
   }
   get moviesList(): Observable<Array<MovieShort>> {
-    console.log(this._moviesList);
     if (this._moviesList.getValue().length === 0) {
       return this.nextPage()
         .pipe(
@@ -41,9 +41,9 @@ export class MovieService {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
   ) {
     cnt++;
-    console.log('cnt ', cnt);
     this.resetParams();
     this._moviesList = new BehaviorSubject<Array<MovieShort>>([]);
   }
@@ -135,6 +135,15 @@ export class MovieService {
       params: this.getHttpParams(tmp)
     }).pipe(
       mergeMap((res: SearchResponseShort) => {
+        if (this.router.url !== '/') {
+          return from(this.router.navigateByUrl('/').then(
+            () => {
+              this._searchParams.next(tmp);
+              this._moviesList.next(res.Search);
+              return res.Search;
+            }
+          ));
+        }
         this._searchParams.next(tmp);
         this._moviesList.next(res.Search);
         return of(res.Search);
@@ -160,6 +169,15 @@ export class MovieService {
       params: this.getHttpParams(tmp)
     }).pipe(
       mergeMap((res: SearchResponseShort) => {
+        if (this.router.url !== '/') {
+          return from(this.router.navigateByUrl('/').then(
+            () => {
+              this._searchParams.next(tmp);
+              this._moviesList.next(res.Search);
+              return res.Search;
+            }
+          ));
+        }
         this._searchParams.next(tmp);
         this._moviesList.next(res.Search);
         return of(res.Search);

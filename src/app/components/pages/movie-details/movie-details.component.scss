@@ -1,5 +1,10 @@
-img.mat-card-image{
-  width: 100%;
-  height: auto;
-  margin: 0;
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  .description-column {
+    padding: 15px;
+    max-width: 992px;
+    justify-self: center;
+  }
 }

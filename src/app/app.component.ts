@@ -26,6 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
+  titleHidden = false;
   title = 'movies';
   options: FormGroup;
   panelOpenState = false;
@@ -34,15 +35,14 @@ export class AppComponent implements OnInit, OnDestroy {
     this.panelOpenState = !this.panelOpenState;
   }
   searchAnotherQuery(newQuery) {
-    console.log('searchAnotherQuery(newQuery): ', newQuery);
     this.subscription
       .add(this.movieService.newSearchByQuery$(newQuery)
-        .subscribe(() => console.log('Updated from newSearchByQuery$')));
+        .subscribe(() => 0));
   }
   searchByTitle(newName) {
     this.subscription
       .add(this.movieService.newSearchByTitle$({s: newName})
-        .subscribe(() => console.log('Updated from newSearchByTitle$')));
+        .subscribe(() => 0));
   }
   resetParameters() {
     this.movieService.resetParams();
@@ -52,5 +52,17 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+  }
+
+  changedWidth(newValue: number) {
+    if (newValue < 576 ) {
+      if (false === this.titleHidden) {
+        this.titleHidden = true;
+      }
+    } else {
+      if (true === this.titleHidden) {
+        this.titleHidden = false;
+      }
+    }
   }
 }

@@ -1,7 +1,8 @@
-<div class="nav-row">
+<div class="nav-row" appWindowWidthObservable (newValue)="changedWidth($event)">
   <div class="navigation-bar">
-    <a routerLinkActive="active"
+    <a routerLinkActive="active" *ngIf="!titleHidden"
        routerLink="/">Movies App</a>
+    <mat-icon matSuffix *ngIf="titleHidden">home</mat-icon>
     <div class="search-group">
       <button mat-button (click)="changePanelOpenState()">Advanced search</button>
       <app-autocomplete-input (selectedOther)="searchByTitle($event)"></app-autocomplete-input>
@@ -13,7 +14,7 @@
       <app-advanced-search
         class="advanced-search"
         (search)="searchAnotherQuery($event)"
-        (reset)="resetParameters()"></app-advanced-search>
+        (resetForm)="resetParameters()"></app-advanced-search>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

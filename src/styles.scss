@@ -19,7 +19,7 @@
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-
+  background-color: mat-color($my-theme, text);;
   .container {
     padding-right: 0;
     padding-left: 0;

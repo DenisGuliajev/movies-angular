@@ -30,8 +30,6 @@ export class AdvancedSearchComponent {
     while (startYear <= currentYear) {
       this.years.push('' + (startYear++));
     }
-    // create local copy
-    console.log(this.years);
   }
   resetSearch() {
     this.resetForm.emit(true);
