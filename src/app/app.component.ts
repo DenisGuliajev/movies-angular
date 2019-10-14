@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import { MovieService } from './services/movie/movie.service';
 import { SearchRequestBySearchInterface } from './classes/serch/search-request-by-search.interface';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy{
+export class AppComponent implements OnInit, OnDestroy {
 
   searchParameters: SearchRequestBySearchInterface;
   subscription: Subscription;
@@ -39,8 +39,7 @@ export class AppComponent implements OnInit, OnDestroy{
       .add(this.movieService.newSearchByQuery$(newQuery)
         .subscribe(() => console.log('Updated from newSearchByQuery$')));
   }
-  searchAnotherId(newName) {
-    console.log('searchAnotherName(newName): ', newName);
+  searchByTitle(newName) {
     this.subscription
       .add(this.movieService.newSearchByTitle$({s: newName})
         .subscribe(() => console.log('Updated from newSearchByTitle$')));

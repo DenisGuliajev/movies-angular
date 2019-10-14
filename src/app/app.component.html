@@ -1,10 +1,10 @@
 <div class="nav-row">
   <div class="navigation-bar">
-    <a mat-button routerLinkActive="active" class="home-btn"
+    <a routerLinkActive="active"
        routerLink="/">Movies App</a>
     <div class="search-group">
       <button mat-button (click)="changePanelOpenState()">Advanced search</button>
-      <app-autocomplete-input (selectedOther)="searchAnotherId($event)"></app-autocomplete-input>
+      <app-autocomplete-input (selectedOther)="searchByTitle($event)"></app-autocomplete-input>
     </div>
 
   </div>

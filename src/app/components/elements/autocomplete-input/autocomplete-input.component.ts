@@ -1,9 +1,8 @@
-import {Component, OnInit, OnDestroy, Input, Output, EventEmitter} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {Component, OnInit, OnDestroy, Output, EventEmitter} from '@angular/core';
+import {FormControl} from '@angular/forms';
 import {Subscription, Observable, BehaviorSubject} from 'rxjs';
 import {MovieService} from 'src/app/services/movie/movie.service';
-import {mergeMap, debounceTime, filter, tap, distinct, map, switchMap} from 'rxjs/operators';
-import {SearchRequestBySearchInterface} from 'src/app/classes/serch/search-request-by-search.interface';
+import {debounceTime, filter, distinct, switchMap} from 'rxjs/operators';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MovieShort} from 'src/app/classes/movies/movie.short';
 
@@ -16,7 +15,6 @@ export class AutocompleteInputComponent implements OnInit, OnDestroy {
   @Output() selectedOther: EventEmitter<string>;
   searchOptions: Observable<MovieShort[]>;
   searchControl: FormControl;
-  searchString: SearchRequestBySearchInterface;
   private subscription: Subscription;
   private _searchOptions: BehaviorSubject<MovieShort[]>;
 
@@ -60,12 +58,7 @@ export class AutocompleteInputComponent implements OnInit, OnDestroy {
 
   updateSearchQueryName
     : (event: MatAutocompleteSelectedEvent) => void
-    = (event) => {
-    console.log(event);
-    // this.searchControl.setValue(event.option.value);
-    // this.movieService.newSearchByTitle$({s: event.option.value}).subscribe(() => 0);
-    // this.selectedOther.emit(this.searchControl.value);
-  }
+    = (event) => console.log(event)
 
   ngOnInit() {
   }

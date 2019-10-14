@@ -4,13 +4,17 @@
 
 @include mat-core();
 
+@import "theme";
+@import "custom-component-themes";
 
-$dark-primary: mat-palette($mat-blue-grey);
-$dark-accent: mat-palette($mat-amber, A200, A100, A400);
-$dark-warn: mat-palette($mat-deep-orange);
-$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-@include angular-material-theme($dark-theme);
 
+// specify theme class eg: <body class="app-theme"> ... </body>
+.app-theme {
+  // use our theme with angular-material-theme mixin
+  @include angular-material-theme($my-theme);
+
+  @include custom-components-theme($my-theme, $my-theme-info, $my-theme-success, $my-theme-warning, $my-theme-error);
+}
 
 body {
   margin: 0;

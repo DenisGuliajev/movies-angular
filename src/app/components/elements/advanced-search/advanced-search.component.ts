@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostBinding } from '@angular/core';
+import { Component, Output, EventEmitter} from '@angular/core';
 import { SearchRequestBySearchInterface } from 'src/app/classes/serch/search-request-by-search.interface';
 import { MovieTypes } from 'src/app/classes/movie-types';
 import { MovieService } from 'src/app/services/movie/movie.service';
@@ -11,8 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class AdvancedSearchComponent {
   @Output() search: EventEmitter<SearchRequestBySearchInterface>;
-  @Output() reset: EventEmitter<boolean>;
-  @HostBinding('class.highlighted') public highlighted: boolean = true;
+  @Output() resetForm: EventEmitter<boolean>;
   movieTypes: typeof MovieTypes;
   years: string[];
   subscription: Subscription;
@@ -24,7 +23,7 @@ export class AdvancedSearchComponent {
     this.subscription.add(this.movieService.searchParams.subscribe((nv) => this.searchQuery = nv));
     this.movieTypes = MovieTypes;
     this.search = new EventEmitter<SearchRequestBySearchInterface>();
-    this.reset = new EventEmitter<boolean>();
+    this.resetForm = new EventEmitter<boolean>();
     let startYear = 1900;
     const currentYear = (new Date()).getUTCFullYear();
     this.years = [''];
@@ -35,7 +34,7 @@ export class AdvancedSearchComponent {
     console.log(this.years);
   }
   resetSearch() {
-    this.reset.emit(true);
+    this.resetForm.emit(true);
   }
 
   searchResults() {
